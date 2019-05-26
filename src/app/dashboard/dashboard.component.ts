@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import data from '../../sampleData/data.json';
+import { DataService } from '../data.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +9,9 @@ import data from '../../sampleData/data.json';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() {
+  constructor(private dataService: DataService) {
     console.log('Reading local json files');
-    console.log(data);
+    console.log(dataService.sampleData);
   }
 
   ngOnInit() {
