@@ -44,17 +44,17 @@
         ]
     },
     {
-        "M": 2,
-        "T": 2,
-        "W": 2,
-        "Th": 2,
-        "F": 2,
         "id": 3,
         "name": "David Jessup",
         "position": "Chef",
         "applied": "03/08/16",
         "experience": 2,
         "availability": {
+            "M": 2,
+            "T": 2,
+            "W": 2,
+            "Th": 2,
+            "F": 2,
             "S": 0,
             "Su": 0
         },
