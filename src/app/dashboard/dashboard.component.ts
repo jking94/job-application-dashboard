@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import data from '../../sampleData/data.json';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log('Reading local json files');
+    console.log(data);
+  }
 
   ngOnInit() {
   }
