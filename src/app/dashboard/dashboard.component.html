@@ -1,28 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 col-md-8 mx-auto">
+    <div class="col-12">
       <h1>Job Applications</h1>
     </div>
   </div>
 </div>
 
 <div class="container">
-  <div class="row" *ngFor="let application of data">
-    <div (click)="viewApplication(application)" class="card col-10 col-md-8 mx-auto">
-      <div style="margin-top:22px" class="row">
-        <p class="col-4">{{application.name}}</p>
-        <p class="col-4">{{application.position}}</p>
-        <p class="col-3">{{application.applied}}</p>
-        <i class="col-1 fas fa-user"></i>
+  <div class="row">
+
+    <div class="col-12 col-md-2">
+      <div class="row">
+        <div class="col-10 card-container">
+          <input type="checkbox" (change)="filterBookmarkedApplications()" />
+          <span>Filter bookmarked</span>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-10 col-md-8 mx-auto">
-      <button (click)="filterBookmarkedApplications()">Filter Bookmarked Applications</button>
+    <div class="col-12 col-md-10">
+      <div class="row" *ngFor="let application of data">
+        <div (click)="viewApplication(application)" class="card col-10">
+          <div style="margin-top:22px" class="row">
+            <p class="col-4">{{application.name}}</p>
+            <p class="col-4">{{application.position}}</p>
+            <p class="col-3">{{application.applied}}</p>
+            <i class="col-1 fas fa-user"></i>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>

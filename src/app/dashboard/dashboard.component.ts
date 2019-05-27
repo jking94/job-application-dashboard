@@ -10,6 +10,7 @@ import { DataService } from '../data.service';
 })
 export class DashboardComponent implements OnInit {
   data;
+  public showingBookmarked = false;
 
   constructor(public dataService: DataService, private router: Router) {
     this.data = this.dataService.sampleData;
@@ -26,9 +27,15 @@ export class DashboardComponent implements OnInit {
   }
 
   filterBookmarkedApplications() {
-    this.data = this.data.filter((application) => {
-      return application.bookmarked === true;
-    });
+
+    if (this.showingBookmarked) {
+      this.data = this.dataService.sampleData;
+    } else {
+      this.data = this.data.filter((application) => {
+        return application.bookmarked === true;
+      });
+    }
+    this.showingBookmarked = !this.showingBookmarked;
   }
 
 }
