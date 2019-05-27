@@ -20,4 +20,8 @@ export class ApplicationDetailComponent implements OnInit {
   ngOnInit() {
   }
 
+  bookmarkApplication(application) {
+    application.bookmarked = !application.bookmarked;
+  }
+
 }

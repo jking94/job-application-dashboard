@@ -7,6 +7,12 @@
   </div>
   <div class="row">
     <div class="col-10 mx-auto">
+      <span>Is bookmarked: </span>
+      <span>{{application.bookmarked}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
       <span>Position: </span>
       <span>{{application.position}}</span>
     </div>
@@ -32,6 +38,14 @@
     <div class="col-10 mx-auto" *ngFor="let question of application.questions">
       {{question.text}}
       {{question.answer}}
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <button (click)="bookmarkApplication(application)">Bookmark Application</button>
     </div>
   </div>
 </div>

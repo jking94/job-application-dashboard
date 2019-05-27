@@ -9,9 +9,10 @@ import { DataService } from '../data.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  data = this.dataService.sampleData;
+  data;
 
   constructor(public dataService: DataService, private router: Router) {
+    this.data = this.dataService.sampleData;
     console.log('Reading local json files');
     console.log(dataService.sampleData);
   }
@@ -22,6 +23,12 @@ export class DashboardComponent implements OnInit {
   viewApplication(application) {
     this.dataService.applicationDetail = application;
     this.router.navigate(['/application-detail']);
+  }
+
+  filterBookmarkedApplications() {
+    this.data = this.data.filter((application) => {
+      return application.bookmarked === true;
+    });
   }
 
 }

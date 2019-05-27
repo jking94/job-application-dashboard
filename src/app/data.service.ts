@@ -9,5 +9,8 @@ export class DataService {
   applicationDetail;
 
   constructor() {
+    this.sampleData.map((application) => {
+      application['bookmarked'] = false;
+    });
   }
 }
