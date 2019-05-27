@@ -8,13 +8,19 @@ import { DataService } from '../data.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  data = this.dataService.sampleData;
 
-  constructor(private dataService: DataService) {
+  constructor(public dataService: DataService) {
     console.log('Reading local json files');
     console.log(dataService.sampleData);
   }
 
   ngOnInit() {
+  }
+
+  viewApplication(application) {
+    console.log(application);
+
   }
 
 }
