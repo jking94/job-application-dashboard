@@ -1,3 +1,37 @@
-<p>
-  application-detail works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <span>Name: </span>
+      <span>{{application.name}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <span>Position: </span>
+      <span>{{application.position}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <span>Applied On: </span>
+      <span>{{application.applied}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <span>Years of Experience: </span>
+      <span>{{application.experience}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto" *ngFor="let day of application.availability | keyvalue">
+      {{day.key}}:{{day.value}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 mx-auto" *ngFor="let question of application.questions">
+      {{question.text}}
+      {{question.answer}}
+    </div>
+  </div>
+</div>

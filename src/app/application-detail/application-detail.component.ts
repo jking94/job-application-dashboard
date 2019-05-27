@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-application-detail',
@@ -6,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./application-detail.component.scss']
 })
 export class ApplicationDetailComponent implements OnInit {
+  application = this.dataService.applicationDetail;
 
-  constructor() { }
+  constructor(public dataService: DataService, private router: Router) {
+    console.log(this.application);
+    if (this.application === undefined) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   ngOnInit() {
   }

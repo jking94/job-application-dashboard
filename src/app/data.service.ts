@@ -6,6 +6,7 @@ import data from '../sampleData/data.json';
 })
 export class DataService {
   sampleData = data;
+  applicationDetail;
 
   constructor() {
   }

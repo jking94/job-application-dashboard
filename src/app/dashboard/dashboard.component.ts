@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 
@@ -10,7 +11,7 @@ import { DataService } from '../data.service';
 export class DashboardComponent implements OnInit {
   data = this.dataService.sampleData;
 
-  constructor(public dataService: DataService) {
+  constructor(public dataService: DataService, private router: Router) {
     console.log('Reading local json files');
     console.log(dataService.sampleData);
   }
@@ -19,8 +20,8 @@ export class DashboardComponent implements OnInit {
   }
 
   viewApplication(application) {
-    console.log(application);
-
+    this.dataService.applicationDetail = application;
+    this.router.navigate(['/application-detail']);
   }
 
 }
