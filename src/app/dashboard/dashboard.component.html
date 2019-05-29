@@ -9,25 +9,36 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-12 col-md-2">
+    <div class="col-12 col-md-3">
       <div class="row">
         <div class="col-10 card-container">
-          <input type="checkbox" (change)="filterBookmarkedApplications()" />
-          <span>Filter bookmarked</span>
+          <div class="row">
+            <div class="col-12">
+              <input class="filter-checkbox" type="checkbox"
+                (change)="stateManagement.filterBookmarkedApplications()" />
+              <span>Filter bookmarked</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <input class="filter-checkbox" type="checkbox" (change)="stateManagement.sortByDate()" />
+              <span>Sort By Date</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-12 col-md-10">
-      <div class="row" *ngFor="let application of data">
-        <div (click)="viewApplication(application)" class="card col-10">
+    <div class="col-12 col-md-9">
+      <div class="row" *ngFor="let application of stateManagement.data">
+        <div (click)="stateManagement.viewApplication(application)" class="card col-8">
           <div style="margin-top:22px" class="row">
-            <p class="col-4">{{application.name}}</p>
+            <p class="col-5">{{application.name}}</p>
             <p class="col-4">{{application.position}}</p>
             <p class="col-3">{{application.applied}}</p>
-            <i class="col-1 fas fa-user"></i>
           </div>
         </div>
+        <div (click)="stateManagement.bookmarkApplication(application)" class="card col-2">Bookmark</div>
       </div>
     </div>
 

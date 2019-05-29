@@ -30,8 +30,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-10 mx-auto" *ngFor="let day of application.availability | keyvalue">
-      {{day.key}}:{{day.value}}
+    <div class="col-10 mx-auto" *ngFor="let day of application.schedule">
+      {{day.displayName}} :
+      {{day.Hours}}
     </div>
   </div>
   <div class="row">
