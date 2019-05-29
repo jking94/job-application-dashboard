@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 export class StateManagementService {
   data;
   public showingBookmarked = false;
-  public sortedByAscending = false;
+  public sortedByDateAscending = false;
+  public sortedByExpAscending = false;
 
   constructor(private dataService: DataService, private router: Router) {
     this.data = this.dataService.sampleData;
@@ -39,7 +40,7 @@ export class StateManagementService {
   }
 
   sortByDate() {
-    if (this.sortedByAscending === false) {
+    if (this.sortedByDateAscending === false) {
       this.data.sort(function (a, b) {
         a = new Date(a.applied);
         b = new Date(b.applied);
@@ -52,7 +53,25 @@ export class StateManagementService {
         return a > b ? 1 : a < b ? -1 : 0;
       });
     }
-    this.sortedByAscending = !this.sortedByAscending;
+    this.sortedByDateAscending = !this.sortedByDateAscending;
+    console.log(this.sortedByDateAscending);
+  }
+  sortByExperience() {
+    if (this.sortedByExpAscending === false) {
+      this.data.sort(function (a, b) {
+        a = a.experience;
+        b = b.experience;
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
+    } else {
+      this.data.sort(function (a, b) {
+        a = a.experience;
+        b = b.experience;
+        return a > b ? 1 : a < b ? -1 : 0;
+      });
+    }
+    this.sortedByExpAscending = !this.sortedByExpAscending;
+    console.log(this.sortedByExpAscending);
   }
 
 }

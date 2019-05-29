@@ -43,6 +43,13 @@ export class DataService {
           },
         );
       });
+
+      this.sampleData.sort(function (a, b) {
+        a = new Date(a.applied);
+        b = new Date(b.applied);
+        return a < b ? -1 : a > b ? 1 : 0;
+      });
+
       localStorage.setItem('inMemoryDB', JSON.stringify(this.sampleData));
       console.log(localStorage.getItem('inMemoryDB'));
 

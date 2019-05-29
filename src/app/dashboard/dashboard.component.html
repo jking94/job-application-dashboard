@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Job Applications</h1>
+      <h1>Job Applications</h1><span>...beta</span>
     </div>
   </div>
 </div>
@@ -11,34 +11,66 @@
 
     <div class="col-12 col-md-3">
       <div class="row">
-        <div class="col-10 card-container">
+        <div class="col-11 col-lg-11 card-container">
           <div class="row">
             <div class="col-12">
               <input class="filter-checkbox" type="checkbox"
                 (change)="stateManagement.filterBookmarkedApplications()" />
-              <span>Filter bookmarked</span>
+              <span>Bookmarked</span>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-12">
               <input class="filter-checkbox" type="checkbox" (change)="stateManagement.sortByDate()" />
               <span>Sort By Date</span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
-
     <div class="col-12 col-md-9">
+      <div class="row">
+        <div style=" height:50px;" class="col-8">
+          <div class="row">
+            <div class="col-12 col-lg-4"></div>
+            <div class="col-12 col-lg-2"></div>
+
+            <div class="col-12 col-lg-3">
+              <i *ngIf="!sortedByExpAscending" class="fas fa-sort-up" (click)="stateManagement.sortByExperience()"></i>
+              <i *ngIf="sortedByExpAscending" class="fas fa-sort-down" (click)="stateManagement.sortByExperience()"></i>
+            </div>
+            <div class="col-12 col-lg-3">
+              <i *ngIf="!sortedByDateAscending" class="fas fa-sort-up" (click)="stateManagement.sortByDate()"></i>
+              <i *ngIf="sortedByDateAscending" class="fas fa-sort-down" (click)="stateManagement.sortByDate()"></i>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row" *ngFor="let application of stateManagement.data">
         <div (click)="stateManagement.viewApplication(application)" class="card col-8">
           <div style="margin-top:22px" class="row">
-            <p class="col-5">{{application.name}}</p>
-            <p class="col-4">{{application.position}}</p>
-            <p class="col-3">{{application.applied}}</p>
+            <div class="col-12">
+              <div class="row">
+                <p class="col-12 col-lg-4">Name</p>
+                <p class="col-12 col-lg-2">Position</p>
+                <p class="col-12 col-lg-3">Experience</p>
+                <p class="col-12 col-lg-3">Applied</p>
+              </div>
+              <div class="row">
+                <p class="col-12 col-lg-4">{{application.name}}</p>
+                <p class="col-12 col-lg-2">{{application.position}}</p>
+                <p class="col-12 col-lg-3">{{application.experience}}</p>
+                <p class="col-12 col-lg-3">{{application.applied}}</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div (click)="stateManagement.bookmarkApplication(application)" class="card col-2">Bookmark</div>
+        <div class="col-2">
+          <i *ngIf="!application.bookmarked" class="far fa-star"
+            (click)="stateManagement.bookmarkApplication(application)"></i>
+          <i *ngIf="application.bookmarked" class="fas fa-star"
+            (click)="stateManagement.bookmarkApplication(application)"></i>
+        </div>
       </div>
     </div>
 
