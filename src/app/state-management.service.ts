@@ -6,15 +6,15 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class StateManagementService {
+  positions;
   data;
   public showingBookmarked = false;
-  public sortedByDateAscending = false;
+  public sortedByDateAscending = true;
   public sortedByExpAscending = false;
 
   constructor(private dataService: DataService, private router: Router) {
+    this.positions = this.dataService.positions;
     this.data = this.dataService.sampleData;
-    console.log('Reading local json files');
-    console.log(dataService.sampleData);
   }
 
   viewApplication(application) {
@@ -25,7 +25,6 @@ export class StateManagementService {
   bookmarkApplication(application) {
     application.bookmarked = !application.bookmarked;
     localStorage.setItem('inMemoryDB', JSON.stringify(this.dataService.sampleData));
-    console.log(localStorage.getItem('inMemoryDB'));
   }
 
   filterBookmarkedApplications() {
@@ -54,7 +53,6 @@ export class StateManagementService {
       });
     }
     this.sortedByDateAscending = !this.sortedByDateAscending;
-    console.log(this.sortedByDateAscending);
   }
   sortByExperience() {
     if (this.sortedByExpAscending === false) {
@@ -71,7 +69,6 @@ export class StateManagementService {
       });
     }
     this.sortedByExpAscending = !this.sortedByExpAscending;
-    console.log(this.sortedByExpAscending);
   }
 
 }

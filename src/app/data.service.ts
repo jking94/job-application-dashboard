@@ -6,6 +6,7 @@ import data from '../sampleData/data.json';
 })
 export class DataService {
   sampleData;
+  positions;
   applicationDetail;
 
 
@@ -47,16 +48,25 @@ export class DataService {
       this.sampleData.sort(function (a, b) {
         a = new Date(a.applied);
         b = new Date(b.applied);
-        return a < b ? -1 : a > b ? 1 : 0;
+        return a > b ? -1 : a < b ? 1 : 0;
       });
 
       localStorage.setItem('inMemoryDB', JSON.stringify(this.sampleData));
-      console.log(localStorage.getItem('inMemoryDB'));
 
     } else {
       this.sampleData = JSON.parse(localStorage.getItem('inMemoryDB'));
-
     }
+
+    // Gets the distinct positions from all applications
+    function distinctPositions(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+
+    const nonDistinctPositions = this.sampleData.map(function (application) {
+      return application.position;
+    });
+
+    this.positions = nonDistinctPositions.filter(distinctPositions);
 
   }
 }

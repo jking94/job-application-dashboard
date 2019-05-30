@@ -19,12 +19,11 @@
               <span>Bookmarked</span>
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-12">
-              <input class="filter-checkbox" type="checkbox" (change)="stateManagement.sortByDate()" />
-              <span>Sort By Date</span>
-            </div>
-          </div> -->
+          <div class="row">
+            <p *ngFor="let position of stateManagement.positions" class="col-12">
+              {{position}}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -35,18 +34,21 @@
             <div class="col-12 col-lg-4"></div>
             <div class="col-12 col-lg-2"></div>
 
-            <div class="col-12 col-lg-3">
-              <i *ngIf="!sortedByExpAscending" class="fas fa-sort-up" (click)="stateManagement.sortByExperience()"></i>
-              <i *ngIf="sortedByExpAscending" class="fas fa-sort-down" (click)="stateManagement.sortByExperience()"></i>
+            <div style="cursor:pointer;" (click)="stateManagement.sortByExperience()"
+              class="col-12 col-lg-3 application-toggle">
+              <span>Experience</span>
+              <i *ngIf="!stateManagement.sortedByExpAscending" class="carat fas fa-sort-up"></i>
+              <i *ngIf="stateManagement.sortedByExpAscending" class="carat fas fa-sort-down"></i>
             </div>
-            <div class="col-12 col-lg-3">
-              <i *ngIf="!sortedByDateAscending" class="fas fa-sort-up" (click)="stateManagement.sortByDate()"></i>
-              <i *ngIf="sortedByDateAscending" class="fas fa-sort-down" (click)="stateManagement.sortByDate()"></i>
+            <div style="cursor:pointer;" (click)="stateManagement.sortByDate()" class="col-12 col-lg-3">
+              <span>Date</span>
+              <i *ngIf="!stateManagement.sortedByDateAscending" class="carat fas fa-sort-up"></i>
+              <i *ngIf="stateManagement.sortedByDateAscending" class="carat fas fa-sort-down"></i>
             </div>
           </div>
         </div>
       </div>
-      <div class="row" *ngFor="let application of stateManagement.data">
+      <div class="row row-centered" *ngFor="let application of stateManagement.data">
         <div (click)="stateManagement.viewApplication(application)" class="card col-8">
           <div style="margin-top:22px" class="row">
             <div class="col-12">
@@ -66,9 +68,9 @@
           </div>
         </div>
         <div class="col-2">
-          <i *ngIf="!application.bookmarked" class="far fa-star"
+          <i *ngIf="!application.bookmarked" class="star far fa-star"
             (click)="stateManagement.bookmarkApplication(application)"></i>
-          <i *ngIf="application.bookmarked" class="fas fa-star"
+          <i *ngIf="application.bookmarked" class="star fas fa-star"
             (click)="stateManagement.bookmarkApplication(application)"></i>
         </div>
       </div>
