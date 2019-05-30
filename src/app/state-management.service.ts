@@ -6,16 +6,21 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class StateManagementService {
+  names;
+  name;
   positions;
   data;
+  dataFromServer;
   selectedPosition;
   public showingBookmarked = false;
   public sortedByDateAscending = true;
   public sortedByExpAscending = false;
 
   constructor(private dataService: DataService, private router: Router) {
+    this.names = this.dataService.names;
     this.positions = this.dataService.positions;
     this.data = this.dataService.sampleData;
+    this.dataFromServer = this.dataService.sampleData;
   }
 
   viewApplication(application) {
@@ -25,14 +30,16 @@ export class StateManagementService {
 
   bookmarkApplication(application) {
     application.bookmarked = !application.bookmarked;
-    localStorage.setItem('inMemoryDB', JSON.stringify(this.dataService.sampleData));
+    localStorage.setItem('inMemoryDB', JSON.stringify(this.dataFromServer));
   }
 
   filterBookmarkedApplications() {
+    console.log(this.dataFromServer);
+    console.log(this.data);
     if (this.showingBookmarked) {
-      this.data = this.dataService.sampleData;
+      this.data = this.dataFromServer;
     } else {
-      this.data = this.data.filter((application) => {
+      this.data = this.dataFromServer.filter((application) => {
         return application.bookmarked === true;
       });
     }
@@ -44,10 +51,16 @@ export class StateManagementService {
     if (this.selectedPosition === undefined) {
       this.data = this.dataService.sampleData;
     } else {
-      this.data = this.data.filter((application) => {
+      this.data = this.dataFromServer.filter((application) => {
         return application.position === this.selectedPosition;
       });
     }
+  }
+
+  filterByName() {
+    this.data = this.dataFromServer.filter((application) => {
+      return application.name.toLowerCase().includes(this.name.toLowerCase());
+    });
   }
 
   sortByDate() {

@@ -7,6 +7,7 @@ import data from '../sampleData/data.json';
 export class DataService {
   sampleData;
   positions;
+  names;
   applicationDetail;
 
 
@@ -62,9 +63,7 @@ export class DataService {
       return self.indexOf(value) === index;
     }
 
-    const nonDistinctPositions = this.sampleData.map(function (application) {
-      return application.position;
-    });
+    const nonDistinctPositions = this.sampleData.map((application) => application.position);
 
     this.positions = nonDistinctPositions.filter(distinctPositions);
 
