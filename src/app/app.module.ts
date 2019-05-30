@@ -7,7 +7,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ApplicationDetailComponent } from './application-detail/application-detail.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatFormFieldModule, MatButtonModule, MatSelectModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatInputModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatSliderModule,
+} from '@angular/material';
 
 
 @NgModule({
@@ -25,7 +32,8 @@ import { MatInputModule, MatFormFieldModule, MatButtonModule, MatSelectModule, M
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

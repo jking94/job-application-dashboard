@@ -6,18 +6,17 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class StateManagementService {
-  names;
   name;
   positions;
   data;
   dataFromServer;
   selectedPosition;
+  experience;
   public showingBookmarked = false;
   public sortedByDateAscending = true;
   public sortedByExpAscending = false;
 
   constructor(private dataService: DataService, private router: Router) {
-    this.names = this.dataService.names;
     this.positions = this.dataService.positions;
     this.data = this.dataService.sampleData;
     this.dataFromServer = this.dataService.sampleData;
@@ -61,6 +60,13 @@ export class StateManagementService {
     this.data = this.dataFromServer.filter((application) => {
       return application.name.toLowerCase().includes(this.name.toLowerCase());
     });
+  }
+
+  filterByExperience() {
+    this.data = this.dataFromServer.filter((application) => {
+      return parseInt(application.experience) >= this.experience;
+    });
+
   }
 
   sortByDate() {

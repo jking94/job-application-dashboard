@@ -10,6 +10,13 @@ import { FormBuilder } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
 
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+    return value;
+  }
+
   constructor(public stateManagement: StateManagementService) {
   }
 
