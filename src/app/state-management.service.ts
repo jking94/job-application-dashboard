@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class StateManagementService {
   positions;
   data;
+  selectedPosition;
   public showingBookmarked = false;
   public sortedByDateAscending = true;
   public sortedByExpAscending = false;
@@ -36,6 +37,17 @@ export class StateManagementService {
       });
     }
     this.showingBookmarked = !this.showingBookmarked;
+  }
+
+  filterByPosition() {
+    this.data = this.dataService.sampleData;
+    if (this.selectedPosition === undefined) {
+      this.data = this.dataService.sampleData;
+    } else {
+      this.data = this.data.filter((application) => {
+        return application.position === this.selectedPosition;
+      });
+    }
   }
 
   sortByDate() {
