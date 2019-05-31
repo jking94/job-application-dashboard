@@ -10,17 +10,19 @@ import { FormBuilder } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
 
+  constructor(public stateManagement: StateManagementService) { }
+
+  ngOnInit() {
+  }
+
   formatLabel(value: number | null) {
-    if (!value) {
-      return 0;
-    }
+    if (!value) { return 0; }
     return value;
   }
 
-  constructor(public stateManagement: StateManagementService) {
-  }
-
-  ngOnInit() {
+  filterBookmarkedApplications() {
+    this.stateManagement.showingBookmarked = !this.stateManagement.showingBookmarked;
+    this.stateManagement.applyFilters();
   }
 
 }

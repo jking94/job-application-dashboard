@@ -1,34 +1,76 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../app/data.service';
 import { Router } from '@angular/router';
+import { ApplicationDetailComponent } from './application-detail/application-detail.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateManagementService {
+
+  hoursWanted = 0;
+  experience = 0;
+  day = '';
+  name = '';
+  positions: Array<any>;
+  data: Array<any>;
+  dataFromServer: Array<any>;
+  selectedPosition: string;
+  showingBookmarked = false;
+  sortedByDateAscending = true;
+  sortedByExpAscending = false;
   sortByDay = false;
-  hoursWanted;
-  day;
-  name;
-  positions;
-  data;
-  dataFromServer;
-  selectedPosition;
-  experience;
-  public showingBookmarked = false;
-  public sortedByDateAscending = true;
-  public sortedByExpAscending = false;
 
   constructor(private dataService: DataService, private router: Router) {
     this.positions = this.dataService.positions;
     this.data = this.dataService.sampleData;
     this.dataFromServer = this.dataService.sampleData;
   }
+  // Applies filters to job applications
+  applyFilters() {
+    // Filters job applications based on bookmarked status
+    this.data = this.dataFromServer;
+    if (!this.showingBookmarked) {
+    } else {
+      this.data = this.dataFromServer.filter((application) => {
+        return application.bookmarked === true;
+      });
+    }
+
+    // Filters job applications based on name
+    this.data = this.data.filter((application) => {
+      return application.name.toLowerCase().includes(this.name.toLowerCase());
+    });
+
+    // Filters job applications by position
+    if (this.selectedPosition === undefined) {
+      this.data = this.data;
+    } else {
+      this.data = this.data.filter((application) => {
+        return application.position === this.selectedPosition;
+      });
+    }
+
+    // Filters job applications by experience
+    this.data = this.data.filter((application) => {
+      return parseInt(application.experience) >= this.experience;
+    });
+
+    // Filters job applications by Day/Hours Needed for that Day
+    this.data = this.data.filter((application) => {
+      if (this.day !== '') {
+        return application.availability[this.day] >= this.hoursWanted && application.availability[this.day] !== 0;
+      } else {
+        return application;
+      }
+    });
+
+  }
 
   toggleDayRadioGroup() {
     this.sortByDay = !this.sortByDay;
-    this.day = "";
-    console.log(this.sortByDay);
+    this.day = '';
+    this.hoursWanted = 0;
   }
 
   viewApplication(application) {
@@ -39,52 +81,7 @@ export class StateManagementService {
   bookmarkApplication(application) {
     application.bookmarked = !application.bookmarked;
     localStorage.setItem('inMemoryDB', JSON.stringify(this.dataFromServer));
-  }
-
-  filterBookmarkedApplications() {
-    if (this.showingBookmarked) {
-      this.data = this.dataFromServer;
-    } else {
-      this.data = this.dataFromServer.filter((application) => {
-        return application.bookmarked === true;
-      });
-    }
-    this.showingBookmarked = !this.showingBookmarked;
-  }
-
-  filterByPosition() {
-    this.data = this.dataService.sampleData;
-    if (this.selectedPosition === undefined) {
-      this.data = this.dataService.sampleData;
-    } else {
-      this.data = this.dataFromServer.filter((application) => {
-        return application.position === this.selectedPosition;
-      });
-    }
-  }
-
-  filterByName() {
-    this.data = this.dataFromServer.filter((application) => {
-      return application.name.toLowerCase().includes(this.name.toLowerCase());
-    });
-  }
-
-  filterByExperience() {
-    this.data = this.dataFromServer.filter((application) => {
-      return parseInt(application.experience) >= this.experience;
-    });
-
-  }
-  filterByDay() {
-    console.log(this.hoursWanted);
-    this.data = this.dataFromServer.filter((application) => {
-      if (this.hoursWanted > 0) {
-        return application.availability[this.day] >= this.hoursWanted;
-      } else {
-        return application.availability[this.day] > 0;
-      }
-
-    });
+    this.applyFilters();
   }
 
   sortByDate() {
@@ -103,6 +100,7 @@ export class StateManagementService {
     }
     this.sortedByDateAscending = !this.sortedByDateAscending;
   }
+
   sortByExperience() {
     if (this.sortedByExpAscending === false) {
       this.data.sort(function (a, b) {

@@ -7,7 +7,6 @@ import data from '../sampleData/data.json';
 export class DataService {
   sampleData;
   positions;
-  names;
   applicationDetail;
 
 
@@ -58,13 +57,10 @@ export class DataService {
       this.sampleData = JSON.parse(localStorage.getItem('inMemoryDB'));
     }
 
-    // Gets the distinct positions from all applications
     function distinctPositions(value, index, self) {
       return self.indexOf(value) === index;
     }
-
     const nonDistinctPositions = this.sampleData.map((application) => application.position);
-
     this.positions = nonDistinctPositions.filter(distinctPositions);
 
   }
