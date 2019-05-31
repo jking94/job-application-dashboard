@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class StateManagementService {
+  sortByDay = false;
+  hoursWanted;
+  day;
   name;
   positions;
   data;
@@ -22,6 +25,12 @@ export class StateManagementService {
     this.dataFromServer = this.dataService.sampleData;
   }
 
+  toggleDayRadioGroup() {
+    this.sortByDay = !this.sortByDay;
+    this.day = "";
+    console.log(this.sortByDay);
+  }
+
   viewApplication(application) {
     this.dataService.applicationDetail = application;
     this.router.navigate(['/application-detail']);
@@ -33,8 +42,6 @@ export class StateManagementService {
   }
 
   filterBookmarkedApplications() {
-    console.log(this.dataFromServer);
-    console.log(this.data);
     if (this.showingBookmarked) {
       this.data = this.dataFromServer;
     } else {
@@ -67,6 +74,17 @@ export class StateManagementService {
       return parseInt(application.experience) >= this.experience;
     });
 
+  }
+  filterByDay() {
+    console.log(this.hoursWanted);
+    this.data = this.dataFromServer.filter((application) => {
+      if (this.hoursWanted > 0) {
+        return application.availability[this.day] >= this.hoursWanted;
+      } else {
+        return application.availability[this.day] > 0;
+      }
+
+    });
   }
 
   sortByDate() {

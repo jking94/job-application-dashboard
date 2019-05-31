@@ -14,7 +14,32 @@
         <div class="col-11 col-lg-11 card-container">
           <div class="row">
             <div class="col-12">
-              <mat-checkbox (change)="stateManagement.filterBookmarkedApplications()">Bookmarked</mat-checkbox>
+              <mat-slide-toggle (change)="stateManagement.filterBookmarkedApplications()">Bookmarked</mat-slide-toggle>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <mat-slide-toggle (change)="stateManagement.toggleDayRadioGroup()">Filter by Day
+              </mat-slide-toggle>
+            </div>
+            <div *ngIf="stateManagement.sortByDay" class="col-12">
+              <mat-radio-group (change)="stateManagement.filterByDay()" [(ngModel)]="stateManagement.day"
+                aria-label="Select an option">
+                <mat-radio-button value="M">Mon</mat-radio-button>
+                <mat-radio-button value="T">Tues</mat-radio-button>
+                <mat-radio-button value="W">Wed</mat-radio-button>
+                <mat-radio-button value="Th">Thurs</mat-radio-button>
+                <mat-radio-button value="F">Fri</mat-radio-button>
+                <mat-radio-button value="S">Sat</mat-radio-button>
+                <mat-radio-button value="Su">Sun</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div *ngIf="stateManagement.day" class="row">
+            <div class="col-12">
+              <span>Hours Wanted</span>
+              <mat-slider (change)="stateManagement.filterByDay()" [(ngModel)]="stateManagement.hoursWanted" thumbLabel
+                [displayWith]="formatLabel" tickInterval="1" min="0" max="8"></mat-slider>
             </div>
           </div>
           <div class="row">

@@ -14,6 +14,8 @@ import {
   MatSelectModule,
   MatCheckboxModule,
   MatSliderModule,
+  MatSlideToggleModule,
+  MatRadioModule
 } from '@angular/material';
 
 
@@ -34,6 +36,8 @@ import {
     MatSelectModule,
     MatCheckboxModule,
     MatSliderModule,
+    MatSlideToggleModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
