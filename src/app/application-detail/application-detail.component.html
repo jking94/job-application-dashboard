@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-10 mx-auto">
       <span>Name: </span>
@@ -47,6 +47,67 @@
   <div class="row">
     <div class="col-12">
       <button (click)="bookmarkApplication(application)">Bookmark Application</button>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="relative-container">
+    <div class="row">
+      <div class="col-12">
+        <div class="filter-card">
+          <div class="row">
+            <div class="col-10">
+              <span class="name-text">{{application.name}}</span>
+            </div>
+            <div class="col-2">
+              <i *ngIf="!application.bookmarked" class="bookmark far fa-bookmark"
+                (click)="stateManagement.bookmarkApplication(application)"></i>
+              <i *ngIf="application.bookmarked" class="bookmark fas fa-bookmark"
+                (click)="stateManagement.bookmarkApplication(application)"></i>
+            </div>
+          </div>
+          <div class="row">
+            <span class="col-12 attribute-key-text">Years of experience:
+              <strong>{{application.experience}}</strong></span>
+          </div>
+          <div class="row">
+            <span class="col-12 attribute-key-text">Position: <strong>{{application.position}}</strong></span>
+          </div>
+          <div class="row">
+            <span class="col-12 attribute-key-text">Applied on: <strong>{{application.applied}}</strong></span>
+          </div>
+          <div class="row">
+            <span class="col-12 attribute-key-text">Availibility: </span>
+            <div class="col-12">
+              <div class="row">
+                <div style="margin-left:10px;margin-right:10px;" *ngFor="let day of application.schedule"
+                  class="col-lg-2">
+                  <strong>{{day.displayName}}:</strong>
+                  {{day.Hours}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="filter-card">
+          <div class="row">
+            <span style="text-decoration:underline;" class="col-12 attribute-key-text">Questions</span>
+          </div>
+          <div *ngFor="let question of application.questions" class="row">
+            <div class="col-12">
+              <strong><span style="margin-right:10px;">Question:</span></strong><span>{{question.text}}</span>
+              <strong><span
+                  style="margin-right:10px; margin-left:25px;">Answer:</span></strong><span>{{question.answer}}</span>
+            </div>
+          </div>
+          <!-- *ngFor="let question of application.questions" -->
+        </div>
+      </div>
     </div>
   </div>
 </div>

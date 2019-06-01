@@ -8,12 +8,12 @@ const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
-    pathMatch: "full"
+    data: { animation: "DashboardPage" }
   },
   {
     path: "application-detail",
     component: ApplicationDetailComponent,
-    pathMatch: "full"
+    data: { animation: "DetailPage" }
   }
 ];
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router'
 import { KeyValue } from '@angular/common';
+import { StateManagementService } from '../state-management.service';
 
 @Component({
   selector: 'app-application-detail',
@@ -11,7 +12,7 @@ import { KeyValue } from '@angular/common';
 export class ApplicationDetailComponent implements OnInit {
   application = this.dataService.applicationDetail;
 
-  constructor(public dataService: DataService, private router: Router) {
+  constructor(public stateManagement: StateManagementService, public dataService: DataService, private router: Router) {
     console.log(this.application);
     if (this.application === undefined) {
       this.router.navigate(['/dashboard']);

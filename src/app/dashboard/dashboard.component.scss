@@ -5,6 +5,9 @@
 .mat-slider-horizontal{
   width:100%;
 }
+.mat-slider-thumb-label-text{
+  color:white !important;
+}
 .container{
   margin-bottom:25px;
 }
@@ -13,8 +16,14 @@ body{
   background:#4c2d79
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h5, h6{
+  display:inline;
  color:#ffffff;
+}
+h4{
+  text-decoration: underline;
+   display:inline;
+  color:#ffffff;
 }
 
 .row-centered{
@@ -24,7 +33,7 @@ h1, h2, h3, h4, h5, h6{
 i{
   color:#ffffff;
   cursor:pointer;
-  &.star{
+  &.bookmark{
     font-size:50px;
   }
   &.carat{
@@ -73,6 +82,11 @@ i{
 }
 
 .beta-tag{
+  display:inline;
   color:white;
   font-size: 10px;
+}
+.relative-container {
+  position: relative;
+  height: auto;
 }

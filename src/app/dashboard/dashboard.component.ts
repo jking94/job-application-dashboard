@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(public stateManagement: StateManagementService) { }
 
   ngOnInit() {
+    this.stateManagement.applyFilters();
   }
 
   formatLabel(value: number | null) {
