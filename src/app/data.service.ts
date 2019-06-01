@@ -18,29 +18,29 @@ export class DataService {
       this.sampleData.map((application) => {
         application['bookmarked'] = false;
       });
-      this.sampleData.forEach((x) => {
-        x['schedule'] = [];
-        x['schedule'].push(
+      this.sampleData.forEach((application) => {
+        application['schedule'] = [];
+        application['schedule'].push(
           {
-            Hours: x.availability['M'], displayName: 'Monday'
+            Hours: application.availability['M'], displayName: 'Monday'
           },
           {
-            Hours: x.availability['T'], displayName: 'Tuesday'
+            Hours: application.availability['T'], displayName: 'Tuesday'
           },
           {
-            Hours: x.availability['W'], displayName: 'Wednesday'
+            Hours: application.availability['W'], displayName: 'Wednesday'
           },
           {
-            Hours: x.availability['Th'], displayName: 'Thursday'
+            Hours: application.availability['Th'], displayName: 'Thursday'
           },
           {
-            Hours: x.availability['F'], displayName: 'Friday'
+            Hours: application.availability['F'], displayName: 'Friday'
           },
           {
-            Hours: x.availability['S'], displayName: 'Saturday'
+            Hours: application.availability['S'], displayName: 'Saturday'
           },
           {
-            Hours: x.availability['Su'], displayName: 'Sunday'
+            Hours: application.availability['Su'], displayName: 'Sunday'
           },
         );
       });
@@ -48,7 +48,7 @@ export class DataService {
       this.sampleData.sort(function (a, b) {
         a = new Date(a.applied);
         b = new Date(b.applied);
-        return a > b ? -1 : a < b ? 1 : 0;
+        return a < b ? -1 : a > b ? 1 : 0;
       });
 
       localStorage.setItem('inMemoryDB', JSON.stringify(this.sampleData));

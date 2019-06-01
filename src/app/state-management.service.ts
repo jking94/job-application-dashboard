@@ -17,8 +17,8 @@ export class StateManagementService {
   dataFromServer: Array<any>;
   selectedPosition: string;
   showingBookmarked = false;
-  sortedByDateAscending = true;
-  sortedByExpAscending = false;
+  sortedByDateAscending = false;
+  // sortedByExpAscending = false;
   sortByDay = false;
 
   constructor(private dataService: DataService, private router: Router) {
@@ -28,6 +28,7 @@ export class StateManagementService {
   }
   // Applies filters to job applications
   applyFilters() {
+
     // Filters job applications based on bookmarked status
     this.data = this.dataFromServer;
     if (!this.showingBookmarked) {
@@ -56,7 +57,7 @@ export class StateManagementService {
       return parseInt(application.experience) >= this.experience;
     });
 
-    // Filters job applications by Day/Hours Needed for that Day
+    // Filters job applications by Day/Hours Available for that Day
     this.data = this.data.filter((application) => {
       if (this.day !== '') {
         return application.availability[this.day] >= this.hoursWanted && application.availability[this.day] !== 0;
@@ -71,6 +72,7 @@ export class StateManagementService {
     this.sortByDay = !this.sortByDay;
     this.day = '';
     this.hoursWanted = 0;
+    this.applyFilters();
   }
 
   viewApplication(application) {
@@ -101,21 +103,21 @@ export class StateManagementService {
     this.sortedByDateAscending = !this.sortedByDateAscending;
   }
 
-  sortByExperience() {
-    if (this.sortedByExpAscending === false) {
-      this.data.sort(function (a, b) {
-        a = a.experience;
-        b = b.experience;
-        return a > b ? -1 : a < b ? 1 : 0;
-      });
-    } else {
-      this.data.sort(function (a, b) {
-        a = a.experience;
-        b = b.experience;
-        return a > b ? 1 : a < b ? -1 : 0;
-      });
-    }
-    this.sortedByExpAscending = !this.sortedByExpAscending;
-  }
+  // sortByExperience() {
+  //   if (this.sortedByExpAscending === false) {
+  //     this.data.sort(function (a, b) {
+  //       a = a.experience;
+  //       b = b.experience;
+  //       return a > b ? -1 : a < b ? 1 : 0;
+  //     });
+  //   } else {
+  //     this.data.sort(function (a, b) {
+  //       a = a.experience;
+  //       b = b.experience;
+  //       return a > b ? 1 : a < b ? -1 : 0;
+  //     });
+  //   }
+  //   this.sortedByExpAscending = !this.sortedByExpAscending;
+  // }
 
 }

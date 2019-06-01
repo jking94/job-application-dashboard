@@ -1,43 +1,78 @@
 
-p{
-    font-size: 16px;
+.mat-form-field{
+      width:100%;
+    }
+.mat-slider-horizontal{
+  width:100%;
 }
+.container{
+  margin-bottom:25px;
+}
+body{
+  height:100vh;
+  background:#4c2d79
+}
+
+h1, h2, h3, h4, h5, h6{
+ color:#ffffff;
+}
+
 .row-centered{
   align-items: center;
 }
+
 i{
-  color:#673AB7;
+  color:#ffffff;
   cursor:pointer;
   &.star{
-    font-size:25px;
+    font-size:50px;
   }
   &.carat{
-    font-size:25px;
+    font-size:35px;
     margin-left:5px;
   }
 }
+
 .card {
+  padding:25px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.1s;
-  margin:15px;
   min-height: 75px;
   cursor: pointer;
+  margin-top:15px;
+  margin-bottom:15px;
 }
-.card-container {
+
+.filter-card {
+  background:#ffffff;
+  padding-bottom:15px;
+  padding-top:15px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin:15px;
-  height:100%;
-  padding-top:25px;
-  padding-bottom:25px;
+  margin-top:15px;
+  margin-bottom:15px;
+  border-radius: .25rem;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.filter-checkbox{
-  margin:5px;
+.header-text{
+  text-decoration: underline;
 }
-.application-toggle{
+
+.bound-text{
+  font-weight: 700;
+}
+.sort-container{
   cursor:pointer;
+  color:white;
+  padding:4px;
+  margin-bottom:15px;
+  margin-top:15px;
+}
+
+.beta-tag{
+  color:white;
+  font-size: 10px;
 }
