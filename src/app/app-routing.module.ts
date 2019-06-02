@@ -4,16 +4,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ApplicationDetailComponent } from './application-detail/application-detail.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "dashboard", pathMatch: "full" },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
-    path: "dashboard",
+    path: 'dashboard',
     component: DashboardComponent,
-    data: { animation: "DashboardPage" }
+    data: { animation: 'DashboardPage' }
   },
   {
-    path: "application-detail",
+    path: 'application-detail',
     component: ApplicationDetailComponent,
-    data: { animation: "DetailPage" }
+    data: { animation: 'DetailPage' }
   }
 ];
 

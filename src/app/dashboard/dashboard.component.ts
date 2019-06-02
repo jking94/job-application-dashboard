@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { StateManagementService } from '../state-management.service';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { RouterModule, Routes } from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +16,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.stateManagement.applyFilters();
-  }
-
-  formatLabel(value: number | null) {
-    if (!value) { return 0; }
-    return value;
   }
 
   filterBookmarkedApplications() {

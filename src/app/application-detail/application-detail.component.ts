@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router'
 import { KeyValue } from '@angular/common';
 import { StateManagementService } from '../state-management.service';
+import { RouterModule, Routes } from "@angular/router";
 
 @Component({
   selector: 'app-application-detail',

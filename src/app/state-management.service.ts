@@ -31,8 +31,7 @@ export class StateManagementService {
 
     // Filters job applications based on bookmarked status
     this.data = this.dataFromServer;
-    if (!this.showingBookmarked) {
-    } else {
+    if (this.showingBookmarked) {
       this.data = this.dataFromServer.filter((application) => {
         return application.bookmarked === true;
       });
@@ -44,9 +43,7 @@ export class StateManagementService {
     });
 
     // Filters job applications by position
-    if (this.selectedPosition === undefined) {
-      this.data = this.data;
-    } else {
+    if (this.selectedPosition !== undefined) {
       this.data = this.data.filter((application) => {
         return application.position === this.selectedPosition;
       });
@@ -58,13 +55,11 @@ export class StateManagementService {
     });
 
     // Filters job applications by Day/Hours Available for that Day
-    this.data = this.data.filter((application) => {
-      if (this.day !== '') {
+    if (this.day !== '') {
+      this.data = this.data.filter((application) => {
         return application.availability[this.day] >= this.hoursWanted && application.availability[this.day] !== 0;
-      } else {
-        return application;
-      }
-    });
+      });
+    }
 
   }
 
@@ -87,37 +82,16 @@ export class StateManagementService {
   }
 
   sortByDate() {
-    if (this.sortedByDateAscending === false) {
-      this.data.sort(function (a, b) {
-        a = new Date(a.applied);
-        b = new Date(b.applied);
+    this.data.sort((a, b) => {
+      a = new Date(a.applied);
+      b = new Date(b.applied);
+      if (this.sortedByDateAscending === false) {
         return a > b ? -1 : a < b ? 1 : 0;
-      });
-    } else {
-      this.data.sort(function (a, b) {
-        a = new Date(a.applied);
-        b = new Date(b.applied);
+      } else {
         return a > b ? 1 : a < b ? -1 : 0;
-      });
-    }
+      }
+    });
     this.sortedByDateAscending = !this.sortedByDateAscending;
   }
-
-  // sortByExperience() {
-  //   if (this.sortedByExpAscending === false) {
-  //     this.data.sort(function (a, b) {
-  //       a = a.experience;
-  //       b = b.experience;
-  //       return a > b ? -1 : a < b ? 1 : 0;
-  //     });
-  //   } else {
-  //     this.data.sort(function (a, b) {
-  //       a = a.experience;
-  //       b = b.experience;
-  //       return a > b ? 1 : a < b ? -1 : 0;
-  //     });
-  //   }
-  //   this.sortedByExpAscending = !this.sortedByExpAscending;
-  // }
 
 }

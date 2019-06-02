@@ -241,7 +241,10 @@
         "experience": 12,
         "availability": {},
         "questions": [
-            {},
+            {
+                "text": "Are you authorized to work in the United States?",
+                "answer": "Yes"
+            },
             {
                 "text": "Have you ever been convicted of a felony?",
                 "answer": "No"

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import data from '../sampleData/newData.json';
+import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -13,37 +14,12 @@ export class DataService {
   constructor() {
 
     if (localStorage.getItem('inMemoryDB') === null) {
-      localStorage.setItem('inMemoryDB', JSON.stringify(data));
-      this.sampleData = JSON.parse(localStorage.getItem('inMemoryDB'));
+      this.sampleData = data;
       this.sampleData.map((application) => {
         application['bookmarked'] = false;
       });
-      this.sampleData.forEach((application) => {
-        application['schedule'] = [];
-        application['schedule'].push(
-          {
-            Hours: application.availability['M'], displayName: 'Monday'
-          },
-          {
-            Hours: application.availability['T'], displayName: 'Tuesday'
-          },
-          {
-            Hours: application.availability['W'], displayName: 'Wednesday'
-          },
-          {
-            Hours: application.availability['Th'], displayName: 'Thursday'
-          },
-          {
-            Hours: application.availability['F'], displayName: 'Friday'
-          },
-          {
-            Hours: application.availability['S'], displayName: 'Saturday'
-          },
-          {
-            Hours: application.availability['Su'], displayName: 'Sunday'
-          },
-        );
-      });
+
+      this.transformSchdule();
 
       this.sampleData.sort(function (a, b) {
         a = new Date(a.applied);
@@ -56,12 +32,41 @@ export class DataService {
     } else {
       this.sampleData = JSON.parse(localStorage.getItem('inMemoryDB'));
     }
-
-    function distinctPositions(value, index, self) {
-      return self.indexOf(value) === index;
-    }
     const nonDistinctPositions = this.sampleData.map((application) => application.position);
-    this.positions = nonDistinctPositions.filter(distinctPositions);
+    this.positions = nonDistinctPositions.filter(this.distinctPositions);
 
+  }
+
+  private distinctPositions(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+  private transformSchdule() {
+    this.sampleData.forEach((application) => {
+      application['schedule'] = [];
+      application['schedule'].push(
+        {
+          Hours: application.availability['M'], displayName: 'Monday'
+        },
+        {
+          Hours: application.availability['T'], displayName: 'Tuesday'
+        },
+        {
+          Hours: application.availability['W'], displayName: 'Wednesday'
+        },
+        {
+          Hours: application.availability['Th'], displayName: 'Thursday'
+        },
+        {
+          Hours: application.availability['F'], displayName: 'Friday'
+        },
+        {
+          Hours: application.availability['S'], displayName: 'Saturday'
+        },
+        {
+          Hours: application.availability['Su'], displayName: 'Sunday'
+        },
+      );
+    });
   }
 }
