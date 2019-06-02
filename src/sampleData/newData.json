@@ -348,7 +348,7 @@
     {
         "id": 14,
         "name": "Talia Dyson",
-        "position": "Dishwasher",
+        "position": "Expo",
         "applied": "01/29/2019",
         "experience": 4,
         "availability": {
@@ -378,7 +378,7 @@
     {
         "id": 15,
         "name": "Raffarty Downs",
-        "position": "Dishwasher",
+        "position": "Expo",
         "applied": "03/03/2018",
         "experience": 11,
         "availability": {
@@ -400,7 +400,7 @@
     {
         "id": 16,
         "name": "Taber Seaborn",
-        "position": "Dishwasher",
+        "position": "Expo",
         "applied": "06/13/2018",
         "experience": 1,
         "availability": {

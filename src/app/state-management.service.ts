@@ -14,7 +14,6 @@ export class StateManagementService {
   name = '';
   positions: Array<any>;
   data: Array<any>;
-  dataFromServer: Array<any>;
   selectedPosition: string;
   showingBookmarked = false;
   sortedByDateAscending = false;
@@ -23,7 +22,6 @@ export class StateManagementService {
   constructor(private dataService: DataService, private router: Router) {
     this.positions = this.dataService.positions;
     this.data = this.dataService.sampleData;
-    this.dataFromServer = this.dataService.sampleData;
   }
 
   applyFilters() {
@@ -35,9 +33,9 @@ export class StateManagementService {
   }
 
   filterByBookmarkedStatus() {
-    this.data = this.dataFromServer;
+    this.data = this.dataService.sampleData;
     if (this.showingBookmarked) {
-      this.data = this.dataFromServer.filter((application) => {
+      this.data = this.dataService.sampleData.filter((application) => {
         return application.bookmarked === true;
       });
     }
@@ -86,7 +84,7 @@ export class StateManagementService {
 
   bookmarkApplication(application) {
     application.bookmarked = !application.bookmarked;
-    localStorage.setItem('inMemoryDB', JSON.stringify(this.dataFromServer));
+    localStorage.setItem('inMemoryDB', JSON.stringify(this.dataService.sampleData));
     this.applyFilters();
   }
 
