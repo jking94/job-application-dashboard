@@ -18,7 +18,6 @@ export class StateManagementService {
   selectedPosition: string;
   showingBookmarked = false;
   sortedByDateAscending = false;
-  // sortedByExpAscending = false;
   sortByDay = false;
 
   constructor(private dataService: DataService, private router: Router) {
@@ -26,35 +25,45 @@ export class StateManagementService {
     this.data = this.dataService.sampleData;
     this.dataFromServer = this.dataService.sampleData;
   }
-  // Applies filters to job applications
-  applyFilters() {
 
-    // Filters job applications based on bookmarked status
+  applyFilters() {
+    this.filterByBookmarkedStatus();
+    this.filterByName();
+    this.filterByPosition();
+    this.filterByExperience();
+    this.filterByDaysAndHoursAvailable();
+  }
+
+  filterByBookmarkedStatus() {
     this.data = this.dataFromServer;
     if (this.showingBookmarked) {
       this.data = this.dataFromServer.filter((application) => {
         return application.bookmarked === true;
       });
     }
+  }
 
-    // Filters job applications based on name
+  filterByName() {
     this.data = this.data.filter((application) => {
       return application.name.toLowerCase().includes(this.name.toLowerCase());
     });
+  }
 
-    // Filters job applications by position
+  filterByPosition() {
     if (this.selectedPosition !== undefined) {
       this.data = this.data.filter((application) => {
         return application.position === this.selectedPosition;
       });
     }
+  }
 
-    // Filters job applications by experience
+  filterByExperience() {
     this.data = this.data.filter((application) => {
       return parseInt(application.experience) >= this.experience;
     });
+  }
 
-    // Filters job applications by Day/Hours Available for that Day
+  filterByDaysAndHoursAvailable() {
     if (this.day !== '') {
       this.data = this.data.filter((application) => {
         return application.availability[this.day] >= this.hoursWanted && application.availability[this.day] !== 0;

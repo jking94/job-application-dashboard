@@ -1,56 +1,3 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <span>Name: </span>
-      <span>{{application.name}}</span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <span>Is bookmarked: </span>
-      <span>{{application.bookmarked}}</span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <span>Position: </span>
-      <span>{{application.position}}</span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <span>Applied On: </span>
-      <span>{{application.applied}}</span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <span>Years of Experience: </span>
-      <span>{{application.experience}}</span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mx-auto" *ngFor="let day of application.schedule">
-      {{day.displayName}} :
-      {{day.Hours}}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-10 mx-auto" *ngFor="let question of application.questions">
-      {{question.text}}
-      {{question.answer}}
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <button (click)="bookmarkApplication(application)">Bookmark Application</button>
-    </div>
-  </div>
-</div> -->
-
 <div class="container">
   <div class="relative-container">
     <div class="row">
@@ -84,7 +31,7 @@
                 <div style="margin-left:10px;margin-right:10px;" *ngFor="let day of application.schedule"
                   class="col-lg-2">
                   <strong>{{day.displayName}}:</strong>
-                  {{day.Hours}}
+                  {{day.Hours}} Hours
                 </div>
               </div>
             </div>
@@ -105,7 +52,6 @@
                   style="margin-right:10px; margin-left:25px;">Answer:</span></strong><span>{{question.answer}}</span>
             </div>
           </div>
-          <!-- *ngFor="let question of application.questions" -->
         </div>
       </div>
     </div>

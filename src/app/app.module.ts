@@ -17,6 +17,8 @@ import {
   MatSlideToggleModule,
   MatRadioModule
 } from '@angular/material';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import {
     ApplicationDetailComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
