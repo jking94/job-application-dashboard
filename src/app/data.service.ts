@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import data from '../sampleData/newData.json';
-import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +9,11 @@ export class DataService {
   positions;
   applicationDetail;
 
-
   constructor() {
 
     if (localStorage.getItem('inMemoryDB') === null) {
       this.sampleData = data;
-      this.sampleData.map((application) => {
+      this.sampleData.forEach((application) => {
         application['bookmarked'] = false;
       });
 

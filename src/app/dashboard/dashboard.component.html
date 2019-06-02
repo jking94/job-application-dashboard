@@ -16,7 +16,7 @@
             <div class="filter-card">
               <div class="col-12">
                 <mat-slide-toggle [checked]="stateManagement.showingBookmarked"
-                  (change)="filterBookmarkedApplications()">
+                  (change)="stateManagement.filterBookmarkedApplications()">
                   Bookmarked
                 </mat-slide-toggle>
               </div>
@@ -38,7 +38,7 @@
                 </mat-form-field>
               </div>
               <div class="col-12">
-                <span>Experience (Years)</span>
+                <span>Experience (>= {{stateManagement.experience}} Years)</span>
                 <mat-slider (change)="stateManagement.applyFilters()" [(ngModel)]="stateManagement.experience"
                   thumbLabel tickInterval="1" min="0" max="20"></mat-slider>
               </div>
@@ -95,7 +95,7 @@
                 </mat-radio-group>
               </div>
               <div *ngIf="stateManagement.day" class="col-12">
-                <span>Hours Available</span>
+                <span>Hours Available (>= {{stateManagement.hoursWanted}} hrs)</span>
                 <mat-slider (change)="stateManagement.applyFilters()" [(ngModel)]="stateManagement.hoursWanted"
                   thumbLabel tickInterval="1" min="0" max="8"></mat-slider>
               </div>
@@ -120,7 +120,7 @@
             </div>
           </div>
         </div>
-        <div class="row row-centered" *ngFor="let application of stateManagement.data">
+        <div class="row row-centered" *ngFor="let application of stateManagement.jobApplications">
           <div class="col-9">
             <div class="card" (click)="stateManagement.viewApplication(application)">
               <div class="row">

@@ -18,9 +18,5 @@ export class DashboardComponent implements OnInit {
     this.stateManagement.applyFilters();
   }
 
-  filterBookmarkedApplications() {
-    this.stateManagement.showingBookmarked = !this.stateManagement.showingBookmarked;
-    this.stateManagement.applyFilters();
-  }
 
 }
